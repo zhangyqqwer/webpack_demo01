@@ -31,10 +31,17 @@ module.exports = {
         })
     ],
     //配置第三方模块加载器
+    /*
+    * webpack处理第三方文件类型的过程
+    * 1、发现不是js文件，就去module中找第三方loader
+    * 2、调用loader从右往左调用
+    * 3、当最后一个loader调用完毕会把结果直接交给webpack进行打包合并最终输出到bundle.js中
+    * */
     module: {
         // 所有第三方模块的匹配规则
         rules: [
-
+            {test : /\.css$//* 正则匹配以.css结尾的*/,use:['style-loader','css-loader'] }, // 配置处理css的第三方loader 调用规则从右到左
+            {test : /\.css$//* 正则匹配以.css结尾的*/,use:['style-loader','css-loader','less-loader'] },// 配置处理less的第三方loader
         ]
     }
 }
