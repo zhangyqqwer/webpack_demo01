@@ -33,6 +33,16 @@ import Vue from 'vue';
 //默认 webpack无法打包vue文件，要安装loader
 // npm  i vue-loader vue-template-compiler -D
 import login from './login.vue'
+// vue-router 的使用
+/*
+装包 npm i vue-router
+导包 import VueRouter from 'vue-router'
+手动安装 Vue.use(VueRouter)
+创建路由对象  var router = new VueRouter({ routers;[路由对象列表]})
+将路由对象挂载到vm上
+ */
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
 var vm = new Vue({
     el:'#app',
