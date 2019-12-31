@@ -13,6 +13,6 @@ export default {
 </script>
 <style scoped>
     /*
-
+    scoped 将属性定义为私有样式
     /* 样式*/
 </style>

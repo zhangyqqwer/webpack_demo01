@@ -78,10 +78,10 @@ export default 在一个模块中向外暴露的成员只能暴露一次
 export暴露的成员只能使用{ 暴露的对象名 }
 export 在一个模块中暴露的成员可以暴露多个
 
-
-
-
 *
 node 导包格式 使用var 名称= require（'模块标识符'）
 module.exports 和 exports 来暴露成员
 * */
+/*
+路由抽离 新建一个路由模块，将路由相关代码放进去，然后使用export default 向外暴露出来。
+ */
