@@ -41,6 +41,15 @@ import login from './login.vue'
 创建路由对象  var router = new VueRouter({ routers;[路由对象列表]})
 将路由对象挂载到vm上
  */
+// 导入mint ui
+import MintUI from 'mint-ui'
+// 导入css
+// 将mint-ui 安装到vue中
+Vue.use(MintUI) // 把所有组件注册为全局的组件
+
+
+
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
