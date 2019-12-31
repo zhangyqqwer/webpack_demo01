@@ -3,6 +3,8 @@ const webpack = require('webpack')
 // 导入html-webpack-plugin
 // 这个插件的两个作用1、自动在内存中生成内存的页面。2、自动把打包的bundle.js追加到html中
 const htmlWebpackPlugin = require('html-webpack-plugin')
+// 引入vueloader
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // 这个配置文件就是一个js文件，通过node 中的模块操作，向外暴露了一个配置对象
 module.exports = {
@@ -28,7 +30,9 @@ module.exports = {
             template: path.join(__dirname,'./src/index.html'), // 指定模版页面，将来会根据指定的模版生成内存中的页面
             filename: "index.html" //指定生成的页面的名称
             // 使用这个插件之后，不需要手动处理bundle.js 的引用路径，由插件自动引入
-        })
+        }),
+        new VueLoaderPlugin() // 配置单文件组件的loader
+
     ],
     //配置第三方模块加载器
     /*
@@ -51,7 +55,9 @@ module.exports = {
             // 配置字体文件,字体文件也是使用url-loader
             {test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader'},
             //配置babel
-            {test: /.js$/, use: 'babel-loader', exclude: /node_modules/}
+            {test: /.js$/, use: 'babel-loader', exclude: /node_modules/},
+            //配置vue-loader规则
+            {test: /\.vue$/, loader: 'vue-loader'}
         ]
     }
 }
