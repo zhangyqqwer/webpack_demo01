@@ -55,10 +55,16 @@ module.exports = {
             // 配置字体文件,字体文件也是使用url-loader
             {test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader'},
             //配置babel
-            {test: /.js$/, use: 'babel-loader', exclude: /node_modules/},
+            {test: /\.js$/, use: 'babel-loader', exclude: /node_modules/},
             //配置vue-loader规则
-            {test: /\.vue$/, loader: 'vue-loader'}
+            {test: /\.vue$/, use: 'vue-loader'}
         ]
+    },
+    resolve: {
+        alias: {
+            // 修改vue 被导入时候的包的路径
+            "vue$":"vue/dist/vue.js"
+        }
     }
 }
 // 使用webpack-dev-server 工具进行自动打包
