@@ -42,6 +42,16 @@ module.exports = {
         rules: [
             {test : /\.css$//* 正则匹配以.css结尾的*/,use:['style-loader','css-loader'] }, // 配置处理css的第三方loader 调用规则从右到左
             {test : /\.css$//* 正则匹配以.css结尾的*/,use:['style-loader','css-loader','less-loader'] },// 配置处理less的第三方loader
+            {test:/\.(jpg|png|gif|bmp|jpeg)$/,use:'url-loader?limit=1024&name=[name].[ext]'},// 配置处理图片路径 在loader中进行传参数跟url传参数一样使用？后面加上参数
+            /*
+            * limit参数是表示小于这个值的时候会进行转码为base64，如果大于这个值就不进行转码
+            * name=[name].[ext]表示这个名字不进行更改
+            * */
+
+            // 配置字体文件,字体文件也是使用url-loader
+            {test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader'},
+            //配置babel
+            {test: /.js$/, use: 'babel-loader', exclude: /node_modules/}
         ]
     }
 }
@@ -56,4 +66,15 @@ module.exports = {
 6、如果要处理非js类型的文件，需要安装其他的加载器
     处理css文件需要安装style-loader css-loader
     在webpack配置文件中新增一个节点叫做module 他是一个对象，对象上又一个rules属性，这个属性数组，存放第三方文件的匹配和处理规则
+7、webpack只能处理一部分es6语法，其余的需要第三方loader进行转换
+8、通过Babel进行高级的语法转换为低级的语法
+9、在webpack中，可以运行如下两套，命令 安装两套包，去安装babel相关的loader功能
+    1、npm i babel-core babel-loader babel-plugin-transform-runtime -D   这是第一套包
+    2、npm i babel-preset-env babel-preset-stage-0 -D 这是第二套包
+    3、装完之后在rules加上匹配规则
+    4、{test:/\.js$/,use:'babel-loader',exclude:/node_modules/} exclude 意思是排除node_modules中的js
+    5、因为node_modules的js不需要进行打包编译。
+    6、在项目的根目录中，新建一个叫做.babelrc 文件，这个文件必须符合json语法规范。
+    7、.babelrc 的的配置{"presets":["env","stage-0"],"plugins":["transform-runtime"]}
+
  */
